@@ -20,17 +20,16 @@ services:
   # docker-compose run --rm node npx @wordpress/create-block --namespace "movie-plugin" --title "Movie List" --category "widgets" movie-list-block
   # to develop the block run:
   # shell 1 (wordpress instance): docker-compose up
-  # shell 2 (node): docker-compose run --rm node sh -c "cd movie-list-block && npm start"
+  # shell 2 (node): docker-compose run --rm node sh -c "cd movie-list-block && npm install && npm start"
   # to build the block run:
   # docker-compose run --rm node  sh -c "cd movie-list-block && npm run build"
   node:
     user: 1000:1000
     image: node:16
-    profiles:
-      - frontend
     restart: always
     ports:
       - 7070:80
+    command: sh -c "cd movie-list-block && npm install && npm start"
     working_dir: /home/node/blocks
     volumes:
       - ./movie-plugin/blocks:/home/node/blocks
