@@ -18,14 +18,34 @@
 foreach (glob(plugin_dir_path(__FILE__) . "/admin/*.php") as $filename) {
 	include($filename);
 }
-foreach (glob(plugin_dir_path(__FILE__) . "/blocks/*", GLOB_ONLYDIR) as $foldername) {
-	foreach (glob($foldername . "/*.php") as $filename) {
-		include $filename;
-	}
-}
+// foreach (glob(plugin_dir_path(__FILE__) . "/blocks/*", GLOB_ONLYDIR) as $foldername) {
+// 	foreach (glob($foldername . "/*.php") as $filename) {
+// 		include $filename;
+// 	}
+// }
 foreach (glob(plugin_dir_path(__FILE__) . "/crud/*.php") as $filename) {
 	include $filename;
 }
+foreach (glob(plugin_dir_path(__FILE__) . "/shortcodes/*.php") as $filename) {
+	include $filename;
+}
+
+// function wpbootstrap_enqueue_styles() {
+// 	//wp_enqueue_style( 'bootstrap', plugin_dir_path(__FILE__) . 'style/bootstrap.min.css' );
+// 	wp_enqueue_style( 'bootstrap', get_stylesheet_uri());	
+// }
+// add_action('wp_enqueue_scripts', 'wpbootstrap_enqueue_styles');
+
+// add_action( 'wp_enqueue_scripts', 'prefix_add_my_stylesheet' );
+
+// /**
+//  * Enqueue plugin style-file
+//  */
+// function prefix_add_my_stylesheet() {
+//     // Respects SSL, Style.css is relative to the current file
+//     wp_register_style('bootstrap', plugin_dir_path(__FILE__) . 'assets/bootstrap.min.css');
+// 	wp_enqueue_style( 'bootstrap');
+// }
 
 function movie_on_activation()
 {

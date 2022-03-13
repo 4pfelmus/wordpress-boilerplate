@@ -1,5 +1,7 @@
-<?php
-global $wpdb;
+<?php 
+add_shortcode("movielist", "movielist_shortcode_function");
+function movielist_shortcode_function(){
+    global $wpdb;
 $movies = $wpdb->get_results(
     <<<SQL
         SELECT * 
@@ -13,7 +15,9 @@ $movies = $wpdb->get_results(
         ORDER BY created_at DESC;
     SQL
 );
-?>
+ob_start();	
+?> 
+
 <div class="wp-block-movie-plugin-movie-list-block">
     <?php foreach ($movies as $movie) { ?>
         <h4><?= $movie->title; ?></h4>
@@ -76,3 +80,12 @@ $movies = $wpdb->get_results(
         </div>
     </div>
 </div>
+
+
+
+<?php
+$content = ob_get_contents();
+ob_end_clean();
+return $content;
+}
+?>
